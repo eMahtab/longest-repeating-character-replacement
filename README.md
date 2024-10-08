@@ -1,2 +1,5 @@
-# longest-repeating-character-replacement
-Longest Repeating Character Replacement
+# Longest Repeating Character Replacement
+https://leetcode.com/problems/longest-repeating-character-replacement
+
+
+
