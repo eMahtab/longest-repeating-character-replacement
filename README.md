@@ -26,3 +26,36 @@ There may exists other ways to achieve this answer too.
 2. s consists of only uppercase English letters.
 3. 0 <= k <= s.length
 
+## Implementation 
+```java
+public class Solution {
+    public int characterReplacement(String s, int k) {
+        // Frequency array to store the counts of characters in the current window
+        int[] count = new int[26];
+        int maxLen = 0;       // To store the maximum length of the valid window
+        int maxCount = 0;     // To store the count of the most frequent character in the current window
+        int left = 0;         // Left pointer for the sliding window
+        
+        for (int right = 0; right < s.length(); right++) {
+            // Update the count of the current character (using 'A' as the base)
+            count[s.charAt(right) - 'A']++;
+            
+            // Update the maxCount of the most frequent character in the window
+            maxCount = Math.max(maxCount, count[s.charAt(right) - 'A']);
+            
+            // If the window becomes invalid (too many replacements), shrink it by moving the left pointer
+            if ((right - left + 1) - maxCount > k) {
+                count[s.charAt(left) - 'A']--;
+                left++;
+            }
+            
+            // Update the maximum length of a valid window
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        
+        return maxLen;
+    }
+}
+
+```
+
