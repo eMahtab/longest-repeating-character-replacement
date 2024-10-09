@@ -44,18 +44,18 @@ public class Solution {
             maxCount = Math.max(maxCount, count[s.charAt(right) - 'A']);
             
             // If the window becomes invalid (too many replacements), shrink it by moving the left pointer
-            if ((right - left + 1) - maxCount > k) {
+            int windowLength = right - left + 1;
+            int requiredReplacements = windowLength - maxCount;
+            if (k < requiredReplacements) {
                 count[s.charAt(left) - 'A']--;
                 left++;
             }
             
-            // Update the maximum length of a valid window
             maxLen = Math.max(maxLen, right - left + 1);
         }
         
         return maxLen;
     }
 }
-
 ```
 
